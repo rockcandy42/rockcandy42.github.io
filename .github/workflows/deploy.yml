@@ -19,14 +19,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
-          cache-dependency-path: 'pnpm-lock.yaml'
+          cache: npm
 
       - name: Install Astro and dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Build with Astro
-        run: pnpm run build
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
