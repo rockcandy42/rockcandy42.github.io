@@ -20,6 +20,7 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
+          cache-dependency-path: 'pnpm-lock.yaml'
 
       - name: Install Astro and dependencies
         run: pnpm install
