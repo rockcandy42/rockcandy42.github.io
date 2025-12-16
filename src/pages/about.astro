@@ -1,20 +1,19 @@
 ---
 import {
-	ArrowUpRight,
-	Code,
-	Globe,
+  ArrowUpRight,
 	Mail,
-	Monitor,
-	Palette,
-	Smartphone,
-	Zap,
+	DraftingCompass,
+	UserSearch,
+	PencilLine,
+	Atom,
 } from "@lucide/astro";
 import { siteConfig } from "@/config/site.js";
 import experiences from "@/collections/experiences.json";
+import educations from "@/collections/education.json";
 import social from "@/collections/social.json";
 import AboutExperience from "@/components/elements/AboutExperience.astro";
 import Button from "@/components/ui/Button.astro";
-import Matter from "@/components/ui/Matter.astro";
+import AboutEducation from "@/components/elements/AboutEducation.astro";
 import Layout from "@/layouts/Layout.astro";
 import Toc from "@/components/widgets/Toc.astro";
 
@@ -71,16 +70,16 @@ const filtered = headings.filter(h => h.depth <= 3);
           data-aos-duration="500"
           data-aos-once="true"
         >
-            <img src="/assets/avatar.png" alt="Ricoui" class="w-14 h-14 rounded-full">
+            <img src="/assets/avatar.png" alt="Summer" class="w-14 h-14 rounded-full">
             <div class="flex items-center gap-3">
-              <a href="https://www.ricoui.com/" target="_blank" class="font-brand text-[24px] text-neutral-700 dark:text-neutral-100">Rico</a>
-              <span class="text-[0.75em] text-neutral-400">|</span>
+              <a class="font-brand text-[24px] text-neutral-700 dark:text-neutral-100">Yingjie Chang (RockCandy)</a>
+              <!-- <span class="text-[0.75em] text-neutral-400">|</span>
               <a href="https://x.com/ricouii" class="flex items-center gap-1 text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 text-sm" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-4.5 h-4.5 fill-current">
                   <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
                 </svg>
                 @ricouii
-              </a>
+              </a> -->
             </div>
         </div>
 
@@ -90,7 +89,7 @@ const filtered = headings.filter(h => h.depth <= 3);
           data-aos-delay="200"
           data-aos-duration="500"
           data-aos-once="true"
-        >"Beautiful design. Clean code. That's the goal."</p>
+        >"Beautiful appearance. Practical functions. Immersive experience."</p>
         <!-- <div class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"></div> -->
 
         <div
@@ -145,7 +144,7 @@ const filtered = headings.filter(h => h.depth <= 3);
           data-aos-duration="500"
           data-aos-once="true"
         >
-          I'm Rico, a Senior Web & Product Designer.
+          I'm Yingjie Chang, a Industrial Designer.
         </p>
         <p
           class="text-neutral-700 pb-4 pt-4 leading-[1.8] dark:text-neutral-200"
@@ -154,10 +153,10 @@ const filtered = headings.filter(h => h.depth <= 3);
           data-aos-duration="500"
           data-aos-once="true"
         >
-          With 8+ years of experience in UX/UI, I not only enjoy creative design and content creation, but coding is also one of my great interests. I often transform my rich and quirky ideas and creativity into design outcomes and tangible projects.
+          Currently learning Industry Design Engineering in the School of Design, SUSTech, I'm enjoy combining designing and engineering for great user experiences. I often transform my rich and quirky ideas into prototypes and conduct user research to validate my design decisions.
 
         </p>
-        <p
+        <!-- <p
           class="text-neutral-700  leading-[1.8] dark:text-neutral-200"
           data-aos="fade-up-xs"
           data-aos-delay="300"
@@ -165,7 +164,7 @@ const filtered = headings.filter(h => h.depth <= 3);
           data-aos-once="true"
         >
           Great design isn't just a pretty interface—it helps people reach their goals naturally, fuels sustainable growth, and keeps systems solid as you scale. I connect design and development, bringing strategy, usability, and execution together to turn visuals into real, measurable results.
-        </p>
+        </p> -->
 
 
         <div
@@ -175,12 +174,55 @@ const filtered = headings.filter(h => h.depth <= 3);
           data-aos-duration="500"
           data-aos-once="true"
         >
-              <Button url="mailto:hello@rico.com" > <Mail  size={16} />  hello@ricoui.com</Button>
+              <Button url="mailto:yingjiechang_42@qq.com" > <Mail  size={16} />  yingjiechang_42@qq.com</Button>
               <Button url={siteConfig.resume} type="fill"> Resume <ArrowUpRight  size={16} /> </Button>
+        </div>
+
+        <!-- Education -->
+        <div class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-12 mb-12"></div>
+        <section class="education">
+        <h2
+          id="education"
+          class="mt-12 mb-4 text-[28px] text-neutral-800  dark:text-neutral-200 font-brand"
+          data-aos="fade-up-xs"
+          data-aos-duration="500"
+          data-aos-once="true"
+        >
+          Education
+        </h2>
+        <div
+          class="px-5 py-10"
+          data-aos="fade-up-xs"
+          data-aos-delay="100"
+          data-aos-duration="600"
+          data-aos-once="true"
+        >
+          { 
+            educations.map((educationItem, index) => {
+              return (
+                <div
+                  class="pb-10 border-l border-dashed border-gray-200 last:border-l-0 dark:border-neutral-500"
+                  data-aos="fade-up-xs"
+                  data-aos-delay={200 + (index * 100)}
+                  data-aos-duration="500"
+                  data-aos-once="true"
+                >
+                  <AboutEducation
+                    dates={educationItem.dates}
+                    major={educationItem.major}
+                    university={educationItem.university}
+                    description={educationItem.description}
+                    logo={educationItem.logo}
+                  />
+                </div>
+              )
+            })
+          }
         </div>
 
         <!-- <img src="/assets/about.jpg" class="relative z-30 w-full my-10 rounded-xl" /> -->
 
+        <!-- Expertise -->
         <div class="w-full border-b-1 border-dashed border-b-neutral-200 dark:border-b-neutral-700 mt-4 mb-8"></div>
           <section>
               <h2
@@ -200,62 +242,47 @@ const filtered = headings.filter(h => h.depth <= 3);
                 <!-- Product Design -->
                 <div class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl  bg-gradient-to-b from-[f7f8f0] to-[#f1f2f9]  dark:from-gray-900 dark:to-gray-800 dark:text-neutral-200 ">
                   <div class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2">
-                    <Palette size={22} />
+                    <PencilLine size={22} />
                     <div class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200">
                       Product Design
                     </div>
                   </div>
                 </div>
-                <!-- Website Design -->
-                <div class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4  rounded-xl  bg-gradient-to-b from-[f7f8f0] to-[#f1f2f9]  dark:from-gray-900 dark:to-gray-800">
-                  <div class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2">
-                    <Globe size={22} />
-                    <div class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200">
-                      Website Design
-                    </div>
-                  </div>
-                </div>
-                <!-- Brand Design -->
-                <div class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4  rounded-xl  bg-gradient-to-b from-[f7f8f0] to-[#f1f2f9]  dark:from-gray-900 dark:to-gray-800">
-                  <div class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2">
-                    <Zap size={22} />
-                    <div class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200">
-                      Brand Design
-                    </div>
-                  </div>
-                </div>
+
                 <!-- Prototyping -->
                 <div class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4  rounded-xl  bg-gradient-to-b from-[f7f8f0] to-[#f1f2f9]  dark:from-gray-900 dark:to-gray-800">
                   <div class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2">
-                    <Monitor size={22} />
+                    <DraftingCompass size={22} />
                     <div class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200">
                       Prototyping
                     </div>
                   </div>
                 </div>
-                <!-- Development -->
+
+                <!-- Embedded -->
                 <div class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4  rounded-xl  bg-gradient-to-b from-[f7f8f0] to-[#f1f2f9]  dark:from-gray-900 dark:to-gray-800">
                   <div class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2">
-                    <Code size={22} />
+                    <Atom size={22} />
                     <div class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200">
-                      Development
+                      Embedded
                     </div>
                   </div>
                 </div>
-                <!-- UI/UX Design -->
+
+                <!-- User Research -->
                 <div class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4  rounded-xl  bg-gradient-to-b from-[f7f8f0] to-[#f1f2f9]  dark:from-gray-900 dark:to-gray-800">
                   <div class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2">
-                    <Smartphone size={22} />
+                    <UserSearch size={22} />
                     <div class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200">
-                      UI/UX Design
+                      User Research
                     </div>
                   </div>
                 </div>
               </div>
           </section>
 
-        <div class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"></div>
-
+        <!-- Tool Stack -->
+        <!-- <div class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"></div>
         <section>
           <h2
             id="tool-stack"
@@ -271,15 +298,16 @@ const filtered = headings.filter(h => h.depth <= 3);
             data-aos-duration="600"
             data-aos-once="true"
           >
-              <Matter />
+              <Matter /> -->
               <!-- Fallback content if Matter.js doesn't load -->
-              <div class="absolute inset-0 flex items-center justify-center text-white opacity-50">
+              <!-- <div class="absolute inset-0 flex items-center justify-center text-white opacity-50">
               </div>
           </div>
-        </section>
+        </section> -->
 
+        <!-- Experience -->
         <div class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-12 mb-12"></div>
-      <section class="experience">
+        <section class="experience">
         <h2
           id="experience"
           class="mt-12 mb-4 text-[28px] text-neutral-800  dark:text-neutral-200 font-brand"
@@ -318,9 +346,11 @@ const filtered = headings.filter(h => h.depth <= 3);
             })
           }
         </div>
-      </section>
-        <div class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"></div>
-      <section>
+      
+        <!-- Connect -->
+        </section>
+          <div class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"></div>
+        <section>
         <h2
           id="lets-connect"
           class="mt-12 mb-4 text-[28px] text-neutral-800  dark:text-neutral-200 font-brand"
@@ -335,11 +365,7 @@ const filtered = headings.filter(h => h.depth <= 3);
           data-aos-duration="500"
           data-aos-once="true"
         >
-          If you want to stay up to date with my work be sure to <a
-            href={siteConfig.social.twitter}
-            target="_blank"
-            class="text-indigo-500 underline">follow me on twitter</a
-          >, or you can send me an <a href="mailto:hello@ricoui.com" class=" underline"
+          If you'd like to communicate with me, feel free to send an <a href="mailto:yingjiechang_42@qq.com" class=" underline"
             >email</a
           > and I'll be sure to get back to you.
         </p>
